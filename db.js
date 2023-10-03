@@ -2,6 +2,11 @@ console.log("Coucou les amis");
 
 //Import du paquet mysql pour pouvoir l'utiliser ici
 import mysql from "mysql"
+import dotenv from "dotenv"
+dotenv.config()
+console.log(process.env.dbname);
+
+
 
 export const connection = mysql.createConnection({
   host     : 'localhost',
@@ -21,29 +26,11 @@ connection.connect((err) => {
 
 // getAllUsers();
 
-function getUserId() {
-  connection.query('SELECT iduser FROM users', (error, results) => {
-    if(error) throw error;
 
-    for ( let i = 0; i < results.length; i++){
-      console.log("#ID : ", results[i].iduser);
-    }
-  })
-};
 
 // getUserId();
 
-function getTaskFromNameUser() {
-  connection.query('SELECT Nom FROM users', (error, results) => {
-    if(error) throw error;
 
-    for ( let i = 0; i < results.length; i++){
-      console.log("Nom : ", results[i].Nom);
-    }
-  })
-};
-
-getTaskFromNameUser();
 
 
 // //test connexion
