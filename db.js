@@ -3,7 +3,7 @@ console.log("Coucou les amis");
 //Import du paquet mysql pour pouvoir l'utiliser ici
 import mysql from "mysql"
 
-const connection = mysql.createConnection({
+export const connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
   password : '',
@@ -17,20 +17,7 @@ connection.connect((err) => {
 
 
 
-function getAllUsers() {
-  connection.query('SELECT * FROM users', (error, results) => {
-      if (error) throw error;
 
-      for (let i = 0; i < results.length; i++) {
-          console.log('#ID : ', results[i].id);
-          console.log('Nom : ', results[i].nom);
-          console.log('Age : ', results[i].age);
-      }
-
-  });
-
-  connection.end();
-}
 
 // getAllUsers();
 
