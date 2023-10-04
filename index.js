@@ -1,2 +1,2 @@
-import {getAllUsers} from './controllers/user.js'
+import {getAllUsers, getUserId, getTaskFromNameUser } from './controllers/user.js'
 getAllUsers();
