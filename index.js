@@ -1,6 +1,24 @@
 import {getAllUsers, getUserId, getTaskFromNameUser } from './controllers/user.js'
 getAllUsers();
 
+import express from "express";
+const app = express();
+app.get('/', function(req, res) {
+        res.send('<p>Mon api</p>')
+})
+
+app.get('/json', function() {
+        res.json({
+                'Nom':'Jacques',
+                'Age':'35'
+        })
+})
+
+//Démarrer le serveur
+app.listen(3000, function(){
+        console.log("Mon serveur a démarrer");
+});
+
 // const http = require('http');
 
 // const server = http.createServer((req, res) => {
