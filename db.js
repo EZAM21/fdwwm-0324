@@ -1,52 +1,14 @@
-console.log("Coucou les amis");
-
-//Import du paquet mysql pour pouvoir l'utiliser ici
-import mysql from "mysql"
 import dotenv from "dotenv"
 dotenv.config()
-console.log(process.env.dbname);
-
-
-
+import mysql from "mysql"
 export const connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : '',
-  database : 'restful_api'
+  host     : process.env.host,
+  user     : process.env.user,
+  password : process.env.password,
+  database : process.env.database
 });
- 
+  
 connection.connect((err) => {
         if(err) throw err
-        console.log("ok");
+        console.log("La base de données a demarré");
 });
-
-
-
-
-
-// getAllUsers();
-
-
-
-// getUserId();
-
-
-
-
-// //test connexion
-// db.connect((err) => {
-//   //Si j'ai une erreur je l'affiche dans le terminal
-//   if ((err) => {
-//     throw err;
-//   }
-//   console.log("connected to dabatase")
-  
-
-// )});
-
-// //get task data 
-// const getAllTask =  => {
-
-// }
-
-// const getTaskFromNameUser = (id) 

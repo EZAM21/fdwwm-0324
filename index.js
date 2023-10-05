@@ -1,68 +1,50 @@
-import {getAllUsers, getUserId, getTaskFromNameUser } from './controllers/user.js'
-getAllUsers();
+import {getAllUsers, getUserId, getTaskFromNameUser,editOneTasksById} from "./controlleur/taskControlleur.js"
 
-import express from "express";
-const app = express();
-app.get('/', function(req, res) {
-        res.send('<p>Mon api</p>')
+
+//  getUserId();
+
+// getTaskFromNameUser();
+
+// getAllUsers();
+
+// editOneTasksById (2,"boire de l'eau");
+
+
+import  express  from "express";
+//app est la variable qui contient mon serveur web
+const app = express()
+
+// import de routeur
+import { taskRouteur } from "./routeur/taskRouteur.js";
+app.use(taskRouteur)
+// creation d'une route sur l'adress /
+app.get('/', function (req, res) {
+        //res est la variable qui contient la reponse envoyer au client,ici j'envoie du html avec Pierre dedans 
+        res.send('<p> Pierre </p>') 
 })
-
-app.get('/json', function() {
+// creation d'une route sur l'adress /json
+app.get('/json', function (req, res) {
+        //ici je renvoie du json
         res.json({
-                'Nom':'Jacques',
-                'Age':'35'
+                'prenom':'Jacques',
+                'age':35
         })
+          
+})
+//ajout d'une route sur /mon-api qui vas renvoyé une api sur naruto personalisé
+import {customApiControlleur} from './controlleur/customControlleur.js'
+app.get('/mon-api', function (req, res) {
+        //fetch recuperer l'api naruto
+         customApiControlleur(req,res)
+})
+//pour demarer le serveur
+app.listen(5000,function(){
+        console.log('Le serveur a demarré')
+
 })
 
-//Démarrer le serveur
-app.listen(3000, function(){
-        console.log("Mon serveur a démarrer");
-});
-
-// const http = require('http');
-
-// const server = http.createServer((req, res) => {
-//     res.end('Voilà la réponse du serveur !');
-// });
-
-// server.listen(process.env.PORT || 3000);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// app.get('/', (req, res) => {
-//   res.send('Hello World');
-// });
-
-// app.listen(port, () => {
-//   console.log(`Le serveur est en cours d'exécution sur le port ${port}`);
-// });
-// const express = require('express');
-// const app = express();
-// const port = 3000; // Vous pouvez spécifier le port de votre choix
-
-// app.get('/', (req, res) => {
-//   res.send('Hello World');
-// });
-
-// app.listen(port, () => {
-//   console.log(`Le serveur est en cours d'exécution sur le port ${port}`);
-// });
+      
+     
+      
