@@ -12,7 +12,7 @@ export const customApiControlleur = async (req,res) => {
 
                 }
             }
-            const monJsonCustom = {...json,...newItem} // ... c'est un spread opertor pour copier coller des tableau
+            const monJsonCustom = {...json,...newItem} // ... c'est un spread opertor pour copier coller
             
             res.send(monJsonCustom)
         } catch (error) {

@@ -7,7 +7,7 @@ import {getAllUsers, getUserId, getTaskFromNameUser,editOneTasksById} from "./co
 
 // getAllUsers();
 
-// editOneTasksById (2,"boire de l'eau");
+// editOneTasksById ("");
 
 
 import  express  from "express";
@@ -20,7 +20,7 @@ app.use(taskRouteur)
 // creation d'une route sur l'adress /
 app.get('/', function (req, res) {
         //res est la variable qui contient la reponse envoyer au client,ici j'envoie du html avec Pierre dedans 
-        res.send('<p> Pierre </p>') 
+        res.send('<p> Johan</p>') 
 })
 // creation d'une route sur l'adress /json
 app.get('/json', function (req, res) {
