@@ -1,5 +1,5 @@
 // pour exporter 
-export const customApiControlleur = async (req,res) => {
+export const customApiControler = async (req,res) => {
         try {
             const url ='https://api.jikan.moe/v4/anime?q=naruto&sfw'
             const data = await fetch (url)

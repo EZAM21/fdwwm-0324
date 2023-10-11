@@ -1,4 +1,6 @@
-import {getAllUsers, getUserId, getTaskFromNameUser,editOneTasksById} from "./controlleur/taskControlleur.js"
+import {getTaskFromNameUser, editOneTasksById, getTaskById, } from "./controlleur/taskController.js"
+import {getAllUsers, getUserId} from "./controlleur/userController.js"
+
 
 
 //  getUserId();
@@ -14,8 +16,13 @@ import  express  from "express";
 //app est la variable qui contient mon serveur web
 const app = express()
 
+
+// app.set('views', './../controlleur/views')
+// app.set('view engine', 'ejs')
+
+
 // import de routeur
-import { taskRouteur } from "./routeur/taskRouteur.js";
+import { taskRouteur } from "./routeur/userRouteur.js";
 app.use(taskRouteur)
 // creation d'une route sur l'adress /
 app.get('/', function (req, res) {
@@ -32,10 +39,10 @@ app.get('/json', function (req, res) {
           
 })
 //ajout d'une route sur /mon-api qui vas renvoyé une api sur naruto personalisé
-import {customApiControlleur} from './controlleur/customControlleur.js'
+import {customApiControler} from './controlleur/customController.js'
 app.get('/mon-api', function (req, res) {
         //fetch recuperer l'api naruto
-         customApiControlleur(req,res)
+         customApiControler(req,res)
 })
 //pour demarer le serveur
 app.listen(5000,function(){
