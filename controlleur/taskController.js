@@ -1,4 +1,4 @@
-import {connection} from "../db.js"
+// import {connection} from "../db.js"
 export function  getTaskFromNameUser () {
         connection.query('SELECT nom FROM users', (error, results) => {
                 if (error) throw error;

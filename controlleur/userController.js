@@ -1,4 +1,4 @@
-import {connection} from "../db.js"
+// import {connection} from "../db.js"
 export function getAllUsers(req,res) {
         connection.query('SELECT * FROM users', (error, results) => {
                 if (error) throw error;
