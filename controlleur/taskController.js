@@ -18,15 +18,24 @@ export function editOneTasksById (id,description) {
         })
 
 }
-export const getTaskById = (req, res) =>{
-        const id = req.params.id
-        connection.query('SELECT * FROM tasks WHERE id = ?',[id], (error, results) => {
-                if (error){
-                        console.log('error')
-                }   
-                // console.log(results)   
-                res.status(200).send(results)  
-        })
-}
+export const getTaskById = async (req, res) => {
+
+        try {
+            //Récupére l'id de la tache dans l'url
+            const id = req.params.id
+    
+            //Utilise la varibale db pour effectuer une requete SQL qui récupére la tache avec l'id
+            db.query("SELECT * FROM task WHERE id = ?", [id], (error, result) => {
+                if (error) throw error
+                
+                //si on a pas d'erreur on renvoi dans la réponse
+                res.send(result)
+                // console.log(result)
+            });
+        } catch (error) {
+            res.send(error)
+        }
+        
+    }
 
 
