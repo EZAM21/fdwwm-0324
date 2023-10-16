@@ -2,7 +2,7 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../db.js';
 
-//export user model
+//Export user model
 export const User = sequelize.define("user", {
         name: {
             type: DataTypes.STRING,
