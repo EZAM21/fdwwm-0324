@@ -58,7 +58,7 @@ app.set('view engine', 'ejs');
 import {taskRouteur} from './routeur/taskRouteur.js';
 import {userRouteur} from './routeur/userRouteur.js';
 
-// Utilisez les routeurs
+// Utilisation  des routeurs
 app.use('/tasks', taskRouteur); // Chemin pour les tâches
 app.use('/users', userRouteur); // Chemin pour les utilisateurs
 
