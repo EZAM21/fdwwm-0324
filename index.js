@@ -11,12 +11,6 @@
 
 // editOneTasksById ("");
 
-
-// import  express  from "express";
-// //app est la variable qui contient mon serveur web
-// const app = express()
-
-
 // // app.set('views', './../controlleur/views')
 // // app.set('view engine', 'ejs')
 
@@ -74,9 +68,7 @@ app.get('/', (req, res) => {
 
 // Fonction customApiController
 app.get('/customController', async (req, res) => {
-    
-    
-    res.send('Custom Controller Response');
+    customApiController(req, res);
 });
 
 app.listen(port, () => {
