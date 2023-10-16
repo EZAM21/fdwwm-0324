@@ -33,7 +33,7 @@
           
 // })
 // //ajout d'une route sur /mon-api qui vas renvoyé une api sur naruto personalisé
-// import {customApiControler} from './controlleur/customController.js'
+// import {customApiControler} from './controlleur/custom-api-controller.js'
 // app.get('/mon-api', function (req, res) {
 //         //fetch recuperer l'api naruto
 //          customApiControler(req,res)
