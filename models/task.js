@@ -1,6 +1,6 @@
 //Tâches avec sequelize
 import { DataTypes } from 'sequelize';
-import { sequelize } from '../db/database.js';
+import { sequelize } from '../db.js';
 
 export const Task = sequelize.define("task", {
         description: {
