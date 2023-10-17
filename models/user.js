@@ -57,3 +57,34 @@ export const User = sequelize.define("user", {
             updatedAt: false        
         }
     );
+
+    //Middleware pour detecter les suppressions de tâches liées à l'utilisateur
+// User.addHook('beforeDestroy', async (user) => { // .addhook ajoute un hook avant la destruction
+//     console.log('beforeDestroy')
+//     // await user.deleteTasks();
+// });
+
+
+//ajout de la méthode destroyAllTask
+User.destroyAllTask = async (id) => {   
+    const countTasksDeleted = await Task.destroy({
+        where: {
+            owner: id
+        }
+    })
+    return countTasksDeleted;
+}
+
+
+
+
+
+// //méthode pour supprimer les tâches liés à l'utilisateur
+// User.prototype.destroyAllTask = async function() {
+//     console.log('deleteTasks')
+//     // await Task.destroy({
+//     //     where: {
+//     //         owner: id
+//     //     }
+//     // })
+// }
