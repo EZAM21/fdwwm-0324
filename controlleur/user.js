@@ -1,6 +1,9 @@
 //import model user
 import { User } from '../models/user.js';
 
+// authentification avec bcsrypt
+import bcrypt from 'bcrypt';
+
 //get User data - SELECT / Lire le CRUD
 export const getAllUsers = async (req, res) => {
     try {
@@ -24,7 +27,7 @@ export const getUserById = async (req, res) => {
         //on récupére l'id de la tache dans l'url
         const id = req.params.id        
 
-        //get Task By Id avec l'ORM
+        //get Task By Id  with the orm sequelize and find with where clause
         const user = await User.findAll({
             where: {
                 id: id
@@ -43,12 +46,16 @@ export const getUserById = async (req, res) => {
 
 export const postUser = async (req, res) => {
     try {
+
+        //hash password - 10 fait référence au nombre de tour de hashage. On peut l'ajouter au fichier .env      
+        const hashedPassword = await bcrypt.hash(req.body.password, 10);        
+
         const user = await User.create({
             nom: req.body.nom,
             age: req.body.age,
             email: req.body.email,
-            password: req.body.password
-        });
+            password: hashedPassword
+        });        
 
         if(!user) {
             res.status(404).send('no users found')
@@ -65,10 +72,10 @@ export const deleteUserById = async (req, res) => {
         //on récupére l'id de la tache dans l'url
         const id = req.params.id        
                 
-        //Supprimer les utilisateurs
+        //call user method to delete all tasks asociated with the current user
         const countTasksDeleted = await User.destroyAllTask(id);        
 
-        //get Task By Id
+        //get Task By Id  with the orm sequelize and find with where clause
         const user = await User.destroy({
             where: {
                 id: id
@@ -83,4 +90,33 @@ export const deleteUserById = async (req, res) => {
     } catch (error) { 
         res.send(error)
     }
+}    
+
+
+export const loginUser = async (req, res) => {
+    try {
+        //on récupére l'id de la tache dans l'url
+        const email = req.body.email
+        const password = req.body.password
+
+        //get Task By Id  with the orm sequelize and find with where clause
+        const user = await User.findAll({
+            where: {
+                email: email
+            }
+        }); 
+        
+        const isMatch = await bcrypt.compare(password, user[0].password);
+
+        if(!isMatch) {
+            res.status(404).send('bad mdp user')
+        }else{
+            res.status(200).send(user);
+        }
+              
+             
+    } catch (error) {
+        res.status(400).send('error with login')
+    }
+   
 }
