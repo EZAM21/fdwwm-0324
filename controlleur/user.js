@@ -2,7 +2,7 @@
 import { User } from '../models/user.js';
 
 //get User data - SELECT / Lire le CRUD
-export const getAllUser = async (req, res) => {
+export const getAllUsers = async (req, res) => {
     try {
         //findAll() permet de récupérer tous les enregistrements de la table
         const users = await User.findAll();

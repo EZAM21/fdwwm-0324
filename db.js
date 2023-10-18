@@ -25,7 +25,8 @@ export const sequelize  = new Sequelize(
         freezeTableName: true
     }, 
       host: process.env.host,
-      dialect: "mysql"
+      // dialect: "mysql" 
+      dialect: process.env.DB_DIALECT //Cache ma base de données dans .env
     }
   );
 
