@@ -8,26 +8,30 @@ import { getAllUser, getUserById, postUser, deleteUserById, loginUser, logoutUse
 import { auth } from "../middleware/auth.js";
 
 //route get sur l'url /tasks pour obtenir toutes les taches
-userRouteur.get('/users', (req, res) => {
+userRouteur.get('/users', auth, (req, res) => {
     getAllUser(req, res);
 })
 
 //route get sur l'url /tasks/id pour obtenir une tache en fonction de son id
-userRouteur.get('/users/:id', (req, res) => {
+userRouteur.get('/users/:id', auth, (req, res) => {
     getUserById(req, res);
 })
 
 //route post sur /users pour poster un utilisateur
-userRouteur.post('/users', (req, res) => {
+userRouteur.post('/users', auth, (req, res) => {
     postUser(req, res);
 })
 
 //route delete /users/id pour supprimer un utilisateur
-userRouteur.delete('/users/:id', (req, res) => {
+userRouteur.delete('/users/:id', auth, (req, res) => {
     deleteUserById(req, res);
 })
 
 //route /login pour se connecter
-userRouteur.post('/login', (req, res) => {
+userRouteur.post('/login', auth, (req, res) => {
     loginUser(req, res);
+})
+
+userRouteur.post('/logout', auth, (req, res) => {
+    logoutUser(req, res);
 })
