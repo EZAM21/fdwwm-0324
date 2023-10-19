@@ -32,6 +32,7 @@ userRouteur.post('/login', auth, (req, res) => {
     loginUser(req, res);
 })
 
+//route /logout pour se déconnecter
 userRouteur.post('/logout', auth, (req, res) => {
     logoutUser(req, res);
 })
