@@ -3,12 +3,13 @@ import  express  from "express";
 // creation du routeur express
 export const userRouteur = express.Router()
 
-//importer les controlleur
-import { getAllUsers } from "../controlleur/user.js";
+//importer les controlleurs
+import { getAllUser, getUserById, postUser, deleteUserById, loginUser, logoutUser } from '../controlleur/user.js'
+import { auth } from "../middleware/auth.js";
 
-//route /users pour obtenir les liste des utilisateurs
-userRouteur.get('/users',(req,res) => {
-        getAllUsers(req,res)
+//route get sur l'url /tasks pour obtenir toutes les taches
+userRouteur.get('/users', (req, res) => {
+    getAllUser(req, res);
 })
 
 //route get sur l'url /tasks/id pour obtenir une tache en fonction de son id
@@ -24,4 +25,9 @@ userRouteur.post('/users', (req, res) => {
 //route delete /users/id pour supprimer un utilisateur
 userRouteur.delete('/users/:id', (req, res) => {
     deleteUserById(req, res);
+})
+
+//route /login pour se connecter
+userRouteur.post('/login', (req, res) => {
+    loginUser(req, res);
 })

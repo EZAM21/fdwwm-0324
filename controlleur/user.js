@@ -1,13 +1,11 @@
 //import model user
 import { User } from '../models/user.js';
-
-// authentification avec bcsrypt
 import bcrypt from 'bcrypt';
 
 //get User data - SELECT / READ of CRUD
-export const getAllUsers = async (req, res) => {
+export const getAllUser = async (req, res) => {
     try {
-        //le mathode findAll() permet de récupérer tous les enregistrements de la table
+        //findAll() permet de récupérer tous les enregistrements de la table
         const users = await User.findAll();
 
         if(!users) {
@@ -113,6 +111,35 @@ export const loginUser = async (req, res) => {
         res.status(400).send('error with login')
     }
    
+}
+
+export const logoutUser = async (req, res) => {
+    try {
+        //on récupére le token dans le header de la requete
+        const token = req.header('Authorization').replace('Bearer ', '')
+
+        //on cherche l'utilisateur avec l'id et le token
+        const user = await User.findOne({ 
+            where: {
+                id: req.user.id,
+                token: token
+            }
+        })
+
+        if (!user) {
+            throw new Error()
+        }
+
+        //on supprime le token de l'utilisateur
+        user.token = null;
+
+        //on sauvegarde l'utilisateur en bdd
+        await user.save()
+
+        res.send('logout success')
+    } catch (error) {
+        res.status(500).send('error with logout')
+    }
 }
 
 //get User data - SELECT / Lire le CRUD

@@ -12,10 +12,15 @@ export const customApiController = async (req,res) => {
 
                 }
             }
-            const monJsonCustom = {...json,...newItem} // ... c'est un spread opertor pour copier coller
-            
-            res.send(monJsonCustom)
+            //Création d'un nouvel objet JSON avec les données de data et de newitem
+            const newData = {...json, ...newItem}
+
+        //j'envoi le nouvel objet
+        res.send(newData)
+        
         } catch (error) {
-                console.log(error)
-        }
+            res.send(error)
+        }   
+ 
+
 }

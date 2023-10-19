@@ -1,7 +1,6 @@
 //import model task
 import { Task } from '../models/task.js';
 
-
 //get Task data - SELECT / READ of CRUD
 export const getAlltask = async (req, res) => {    
            
@@ -52,6 +51,17 @@ export const getAlltask = async (req, res) => {
         const tasks = await Task.findAll(
             options
 
+            //options variables but it's like we have 
+            /*
+            where: {
+                completed: false
+            },
+            order: {
+                createdAt: 'DESC'
+            },
+            limit: 2,
+             etc...
+            */
         );
 
         // const tasks = await Task.findAll();
@@ -66,7 +76,7 @@ export const getAlltask = async (req, res) => {
     }   
 }
 
-//get Task data from id SELECT / Lire le CRUD
+//get Task data from id SELECT / READ of CRUD
 export const getTaskById = async (req, res) => {
 
     try {
@@ -86,13 +96,22 @@ export const getTaskById = async (req, res) => {
 
         res.status(200).send(task);
         
-
+        /*
+        //on utilise la varibale db pour effectuer une requete SQL qui récupére la tache avec l'id
+        db.query("SELECT * FROM task WHERE id = ?", [id], (error, result) => {
+            if (error) throw error
+            
+            //si on a pas d'erreur on renvoi dans la réponse
+            res.send(result)
+            // console.log(result)
+        });
+        */
     } catch (error) {
         res.send(error)
     }    
 }
 
-// CREATION du CRUD
+// INSERT / CREATE of CRUD
 export const postTaskById = async (req, res) => {
     
     try {
@@ -113,14 +132,24 @@ export const postTaskById = async (req, res) => {
         }
 
         res.status(201).send(task);
-   
+
+        /*
+        //insert task table from id
+        db.query("INSERT INTO task (description, completed, owner) VALUES (?, ?, ?)", [description, completed, id], (error, result) => {
+            if (error) throw error
+            
+            //si on a pas d'erreur on renvoi dans la réponse
+            res.status(201).send(result)
+            console.log(result)
+        });       
+        */    
     } catch (error) {
         res.status(400).send(error)
     }
 
 }
 
-// DELETE / Supprimer le CRUD
+// DELETE / DELETE of CRUD
 export const deleteTaskById = async (req, res) => {
         
     try {
@@ -141,6 +170,16 @@ export const deleteTaskById = async (req, res) => {
         res.status(200).send('task deleted'); 
 
 
+        /*
+        //update task table from id
+        db.query("DELETE FROM task WHERE id = ?", [id], (error, result) => {
+            if (error) throw error
+            
+            //si on a pas d'erreur on renvoi dans la réponse
+            res.status(201).send(result)
+            console.log(result)
+        });
+        */
     } catch (error) {
         res.send(error)
     }
@@ -171,6 +210,16 @@ export const editTaskById = async (req, res) => {
 
         res.status(200).send('task updated');
 
+        /*
+        //update task table from id
+        db.query("UPDATE task SET description = ?, completed = ? WHERE id = ?", [description, completed, id], (error, result) => {
+            if (error) throw error
+            
+            //si on a pas d'erreur on renvoi dans la réponse
+            res.status(201).send(result)
+            console.log(result)
+        });
+        */
     } catch (error) {
         res.send(error)
     }
