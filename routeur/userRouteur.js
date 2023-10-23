@@ -1,4 +1,5 @@
 import  express  from "express";
+import multer from 'multer'
 
 // creation du routeur express
 export const userRouteur = express.Router()
@@ -35,4 +36,14 @@ userRouteur.post('/login', auth, (req, res) => {
 //route /logout pour se déconnecter
 userRouteur.post('/logout', auth, (req, res) => {
     logoutUser(req, res);
+})
+
+// //route /users/:id/avatar pour ajouter une image de profil
+// userRouteur.post('/users/:id/avatar', auth, upload.single('avatar'), (req, res) => {         
+//     uploadAvatar(req, res);   
+// }) 
+
+//route /users/:id/avatar pour supprimer une image de profil
+userRouteur.delete('/users/:id/avatar', auth, (req, res) => {         
+    deleteAvatar(req, res);   
 })

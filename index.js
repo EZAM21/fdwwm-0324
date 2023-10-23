@@ -66,6 +66,15 @@ const port = 5000
 //indiquer a express qu'on peut insérer des donnée au format json
 app.use(express.json())
 
+//indiquer a express qu'on peut insérer des donnée au format form data
+app.use(express.urlencoded({ extended: true }))
+
+//set var to get path directory
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+const __filename = fileURLToPath(import.meta.url);
+export const __dirname = dirname(__filename);
+
 //indiquer a express qu'on peut utiliser le moteur de template ejs
 app.set('view engine', 'ejs') 
 
