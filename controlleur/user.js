@@ -6,7 +6,7 @@ import fs from 'fs'//Librairie fs
 import {__dirname} from '../index.js'
 import path from 'path'//Librairie path
 
-//get User data - SELECT / READ of CRUD
+//get User data - SELECT / Lire le CRUD
 export const getAllUser = async (req, res) => {
     try {
         //findAll() permet de récupérer tous les enregistrements de la table
@@ -139,7 +139,7 @@ export const logoutUser = async (req, res) => {
 
         //on sauvegarde l'utilisateur en bdd
         await user.save()
-
+        //On utilise res.send
         res.send('logout success')
     } catch (error) {
         res.status(500).send('error with logout')
@@ -153,7 +153,7 @@ export const upload = multer({
     limits: {
         fileSize: 1000000
     },   
-    //filter the type of file
+    //filtrer le type de fichier
     fileFilter(req, file, cb) {
         //si le fichier ne correspond pas au type, renvoyer une erreur
         if(!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
@@ -174,7 +174,7 @@ export const uploadAvatar = async (req, res) => {
 
         if(!user) throw 'no users found'
         
-        //get file infos
+        //obtenir des informations sur le fichier
         const path = req.file.path
         const extension = req.file.originalname.split('.')[1]        
              

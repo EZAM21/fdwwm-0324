@@ -156,7 +156,7 @@ export const deleteTaskById = async (req, res) => {
         //on récupére l'id de la tache dans l'url
         const id = req.params.id
 
-        // delete Task By Id with orm
+        // supprimer Task By Id with orm
         const task = await Task.destroy({
             where: {
                 id: id
@@ -185,7 +185,7 @@ export const deleteTaskById = async (req, res) => {
     }
     
 }
-// PUT / UPDATE of CRUD
+// PUT / mis à jour du CRUD
 export const editTaskById = async (req, res) => {
         
     try {
