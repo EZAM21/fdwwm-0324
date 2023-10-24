@@ -1,10 +1,10 @@
 //import model user
 import { User } from '../models/user.js';
 import bcrypt from 'bcrypt';
-import multer from 'multer'
-import fs from 'fs'
+import multer from 'multer'//Librairie multer
+import fs from 'fs'//Librairie fs
 import {__dirname} from '../index.js'
-import path from 'path'
+import path from 'path'//Librairie path
 
 //get User data - SELECT / READ of CRUD
 export const getAllUser = async (req, res) => {
