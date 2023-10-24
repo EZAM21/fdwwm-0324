@@ -74,10 +74,10 @@ export const deleteUserById = async (req, res) => {
         //on récupére l'id de la tache dans l'url
         const id = req.params.id        
                 
-        //call user method to delete all tasks asociated with the current user
+        //Appeler la méthode de l’utilisateur pour supprimer toutes les tâches avec l’utilisateur actuel
         const countTasksDeleted = await User.destroyAllTask(id);        
 
-        //get Task By Id  with the orm sequelize and find with where clause
+        //obtenir Task By Id avec l’orm sequelize et trouver avec la clause where
         const user = await User.destroy({
             where: {
                 id: id
@@ -103,7 +103,7 @@ export const loginUser = async (req, res) => {
         //Si oui, génération du token via la méthode generateAuthToken
         const token = await User.generateAuthToken(user)
 
-        //on ajouter dans les headers le fameux token sous le champs "Authorization", il sera conservé côté client dans les cookies avec une durée de vie TTL
+        //on ajoute dans les headers le token sous le champs "Authorization", il sera conservé côté client dans les cookies avec une durée de vie TTL
         res.setHeader('Authorization', token);    
 
         //le header Access-Control-Expose-Headers permet d'exposer le header Authorization
@@ -147,19 +147,19 @@ export const logoutUser = async (req, res) => {
 }
 
 export const upload = multer({
-    //to upload to a specific folder, comment it to store in database
+    //Pour télécharger vers un dossier spécifique, le commenter pour le stocker dans la base de données
     dest: 'images',   
-    //limit the size of the file
+    //limiter la taille du fichier
     limits: {
         fileSize: 1000000
     },   
     //filter the type of file
     fileFilter(req, file, cb) {
-        //if the file doesn't match the type, return an error
+        //si le fichier ne correspond pas au type, renvoyer une erreur
         if(!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
             return cb(new Error('please upload an image'))
         }
-        //if the file match the type, return no error
+        //si le fichier ne correspond pas au type, renvoyer une erreur
         cb(undefined, true)
     }
 })
@@ -206,15 +206,15 @@ export const deleteAvatar = async (req, res) => {
 
         if(!user) throw 'no users found'
 
-        //get user avatar without extension
+        //get user avatar sans extension
         const pathAvatar = user.avatar             
 
-        //delete image file
+        //Supprimer une image
         fs.unlink(pathAvatar, (err) => {
             if(err) throw err
         })        
         
-        //on suppr l'avatar 
+        //on supprime l'avatar 
         user.avatar = null
 
         //on sauvegarde l'utilisateur en bdd
@@ -237,10 +237,10 @@ export const getAvatar = async (req, res) => {
 
         if(!user) throw 'no users found'
 
-        //get user avatar without extension
+        //get user avatar sans extension
         const pathAvatar = user.avatar                   
 
-        //option to send file
+        //send file
         const options = {
             root: path.join(__dirname)
         }      
