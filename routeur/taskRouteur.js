@@ -4,10 +4,10 @@ import { auth } from "../middleware/auth.js";
 // creation du routeur express
 export const taskRouteur = express.Router()
 
-//importer les controlleur
+//importer les controlleurs
 import { getAlltask, getTaskById, postTaskById, deleteTaskById, editTaskById } from "../controlleur/taskController.js";
 
-//route /users pour obtenir les liste des utilisateurs
+//route /users pour obtenir les listes des utilisateurs
 taskRouteur.get('/task/:id', auth, (req,res) => {
         getAlltask(req,res)
 })

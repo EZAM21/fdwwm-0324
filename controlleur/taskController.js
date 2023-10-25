@@ -1,53 +1,53 @@
-//import model task
+// importe le modèle de données(models) "Task" depuis un fichier appelé "task.js". 
 import { Task } from '../models/task.js';
 
-//get Task data - SELECT / READ of CRUD
+//Cette fonction gère la lecture (READ) de toutes les tâches (tasks). Elle prend en charge la pagination, le filtrage et le tri des tâches en fonction des paramètres de requête.
 export const getAlltask = async (req, res) => {    
            
     try {       
-        //match and sort options to record if they exist in req.query object
+        //commence par définir des objets match, sort, et options pour stocker les critères de recherche, de tri et de pagination.
         const match = {}
         const sort = {}
         
-        //options object to record all options and send it to findAll request
+        //Objet options pour enregistrer toutes les options et l’envoyer à findAll request
         const options = {}
        
-        //get param completed /tasks?completed=true
+        // permet de sélectionner des tâches en fonction de leur état de complétion.
         if(req.query.completed) {
-            match.completed = req.query.completed === 'true'
+            match.completed = req.query.completed === 'true'//Si le paramètre de requête completed est présent, cette ligne examine sa valeur. Si la valeur est 'true', cela signifie qu'on souhaite filtrer les tâches complétées.
 
-            //create where clause in options object
+            //crée une clause where dans l'objet options
             options.where = match
         }                
       
-        //param sort /tasks?sortBy=createdAt:desc 
+        //gérer la partie "tri" des tâches (tasks) en fonction d'un paramètre de requête sortBy. 
         if(req.query.sortBy) {
             const parts = req.query.sortBy.split(':')         
-            sort.createdAt = parts[1] === 'desc' ? 'DESC' : 'ASC'    
+            sort.createdAt = parts[1] === 'desc' ? 'DESC' : 'ASC'//détermine la direction du tri en fonction de la deuxième partie obtenue à partir du paramètre sortBy.     
             
-            //create order clause in options object
+            //creation d' order clause dans les options object
             options.order = sort
         }       
         
         //param limit /tasks?limit=2        
         if(req.query.limit) {         
-            //use of parsint method to convert string to number   
+            //utilisation de la méthode parsint pour convertir la chaîne en nombre  
             const limit = parseInt(req.query.limit)      
             
-            //create limit clause in options object
+            //créer une clause limit dans l’objet options
             options.limit = limit
         }
                
         //param skip /tasks?skip=2        
         if(req.query.skip) {
-            //use of parsint method to convert string to number
+            //utilisation de la méthode parsint pour convertir la chaîne en nombre
             const skip = parseInt(req.query.skip)     
             
             //create offset clause in options object
             options.offset = skip
         }        
                 
-        //select record of table task with the good match and sort
+        //méthode findAll du modèle "Task" en passant l'objet options pour rechercher les tâches dans la base de données.
         const tasks = await Task.findAll(
             options
 
@@ -64,7 +64,7 @@ export const getAlltask = async (req, res) => {
             */
         );
 
-        // const tasks = await Task.findAll();
+        // Si aucune tâche n'est trouvée, renvoie une réponse 404 ("no tasks found").
         if(!tasks) {
             res.status(404).send('no tasks found')
         }
@@ -76,14 +76,14 @@ export const getAlltask = async (req, res) => {
     }   
 }
 
-//get Task data from id SELECT / READ of CRUD
+//gère la lecture (READ) d'une tâche spécifique en fonction de son ID.
 export const getTaskById = async (req, res) => {
 
     try {
         //on récupére l'id de la tache dans l'url
         const id = req.params.id        
 
-        //get Task By Id  with the orm sequelize and find with where clause
+        //obtenir Task By Id avec l’orm sequelize et trouver avec la clause where
         const task = await Task.findAll({
             where: {
                 id: id
@@ -111,7 +111,7 @@ export const getTaskById = async (req, res) => {
     }    
 }
 
-// INSERT / CREATE of CRUD
+// INSERT / CREATION DU CRUD.
 export const postTaskById = async (req, res) => {
     
     try {
@@ -120,7 +120,7 @@ export const postTaskById = async (req, res) => {
         const description = req.body.description
         const completed = req.body.completed
         
-        //postTaskById with the orm
+        //postTaskById avec l'orm
         const task = await Task.create({
             description: description,
             completed: completed,
@@ -149,7 +149,7 @@ export const postTaskById = async (req, res) => {
 
 }
 
-// DELETE / DELETE of CRUD
+// suppression du CRUD
 export const deleteTaskById = async (req, res) => {
         
     try {
