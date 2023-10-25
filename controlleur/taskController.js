@@ -1,5 +1,8 @@
 // importe le modèle de données(models) "Task" depuis un fichier appelé "task.js". 
 import { Task } from '../models/task.js';
+// import { escape } from 'escape-html';
+import pkg from 'escape-html';
+const { escape } = pkg;
 
 //Cette fonction gère la lecture (READ) de toutes les tâches (tasks). Elle prend en charge la pagination, le filtrage et le tri des tâches en fonction des paramètres de requête.
 export const getAlltask = async (req, res) => {    
