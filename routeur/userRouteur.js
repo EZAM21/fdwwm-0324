@@ -9,11 +9,11 @@ import { getAllUser, getUserById, postUser, deleteUserById, loginUser, logoutUse
 import { auth } from "../middleware/auth.js";
 
 /**
- *@api {get} /users Request User information
- *@apiDescription Get current user from the dabatase
- *@apiName GetUsers
- *@apiGroup User
- *@apiVersion 0.2.23
+ * @api {get} /users Request User information
+ * @apiDescription Get current user from the dabatase
+ * @apiName GetUsers
+ * @apiGroup User
+ * @apiVersion 0.2.23
 **/
 
 //route get sur l'url /tasks pour obtenir toutes les taches

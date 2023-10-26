@@ -7,6 +7,14 @@ export const taskRouteur = express.Router()
 //importer les controlleurs
 import { getAlltask, getTaskById, postTaskById, deleteTaskById, editTaskById } from "../controlleur/taskController.js";
 
+/**
+ *@api {get} /tasks Request Task information
+ *@apiDescription Get current task from the dabatase
+ *@apiName GetAlltask
+ *@apiGroup Task
+ *@apiVersion 0.2.23
+**/
+
 //route /users pour obtenir les listes des utilisateurs
 taskRouteur.get('/task/:id', auth, (req,res) => {
         getAlltask(req,res)

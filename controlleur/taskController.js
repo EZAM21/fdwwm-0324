@@ -9,7 +9,7 @@ export const getAlltask = async (req, res) => {
            
     try {       
         //commence par définir des objets match, sort, et options pour stocker les critères de recherche, de tri et de pagination.
-        const match = {}
+        const match = {} //filtrer
         const sort = {}
         
         //Objet options pour enregistrer toutes les options et l’envoyer à findAll request
