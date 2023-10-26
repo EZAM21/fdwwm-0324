@@ -99,6 +99,10 @@ export const getTaskById = async (req, res) => {
 
         res.status(200).send(task);
         
+    } catch (error) {
+        res.send(error)
+    }    
+}
         /*
         //on utilise la varibale db pour effectuer une requete SQL qui récupére la tache avec l'id
         db.query("SELECT * FROM task WHERE id = ?", [id], (error, result) => {
@@ -109,10 +113,6 @@ export const getTaskById = async (req, res) => {
             // console.log(result)
         });
         */
-    } catch (error) {
-        res.send(error)
-    }    
-}
 
 // INSERT / CREATION DU CRUD.
 export const postTaskById = async (req, res) => {

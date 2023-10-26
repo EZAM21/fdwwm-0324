@@ -36,6 +36,8 @@
     "path": "^0.12.7",
     "process": "^0.11.10",
     "rate-limiter-flexible": "^3.0.2",
-    "sequelize": "^6.33.0"
+    "sequelize": "^6.33.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0"
   }
 }

@@ -12,7 +12,8 @@
 //         "sourceType": "module"
 //     },
 //     "rules": {
-//         "semi": ["error", "always"],
+            //utiliser des guillemets doubles pour entourer les chaînes de caractères, et si des guillemets simples sont utilisés, ESLint générera une erreur.
+//         "semi": ["error", "always"], 
 //         "quotes": ["error", "double"]
        
 //     }    

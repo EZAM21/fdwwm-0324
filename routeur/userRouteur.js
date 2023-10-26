@@ -8,6 +8,14 @@ export const userRouteur = express.Router()
 import { getAllUser, getUserById, postUser, deleteUserById, loginUser, logoutUser, upload, uploadAvatar } from '../controlleur/user.js'
 import { auth } from "../middleware/auth.js";
 
+/**
+ *@api {get} /users Request User information
+ *@apiDescription Get current user from the dabatase
+ *@apiName GetUsers
+ *@apiGroup User
+ *@apiVersion 0.2.23
+**/
+
 //route get sur l'url /tasks pour obtenir toutes les taches
 userRouteur.get('/users', auth, (req, res) => {
     getAllUser(req, res);
