@@ -50,6 +50,7 @@ import { RateLimiterMemory } from "rate-limiter-flexible";
 import bodyParser from 'body-parser';
 import apicache from 'apicache'
 import cors from 'cors'
+// import process from 'process';
 // getAlltask()
 //ici j'appelle la fonction getTaskFromIdUser avec en parametre 1
 // getTaskFromIdUser(1) 
@@ -157,11 +158,11 @@ app.use((req, res, next) => {
 
 //demarrage du serveur
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
+    console.log(`Exemple de connection sur http://localhost:${port}`)
 })
 
-app.use(
-    helmet({
-      contentSecurityPolity: false,
-    })
+// Utilisation de helmet pour configurer CSP
+app.use(helmet({
+    contentSecurityPolicy : false,
+    }) 
 );

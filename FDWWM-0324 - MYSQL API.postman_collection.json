@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "581709e2-ed95-4677-9c02-21e59dbb9f73",
-		"name": "0324 - MYSQL API",
+		"_postman_id": "3aa381dc-999e-48b4-b29f-06022604a413",
+		"name": "fdwwm-0324 - MYSQL API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "14874611"
+		"_exporter_id": "30073747"
 	},
 	"item": [
 		{
@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"description\" : \"faire connaissance aussi\",\r\n    \"completed\" : false\r\n}",
+					"raw": "{\r\n    \"description\" : \"apprendre nodejs\",\r\n    \"completed\" : false\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -129,6 +129,14 @@
 						"2"
 					]
 				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
 			},
 			"response": []
 		}
