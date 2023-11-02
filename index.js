@@ -70,37 +70,44 @@ const app = express()
 const port = 5000
 
 //cors
-app.use(cors())
+app.use(cors({
+    // defaultSrc: 'self',
+    // scriptSrc: 'self unsafe-eval', 
+    // styleSrc: 'self fonts.googleapis.com'
+}))
 
 //here we cached all routes
 // let cache = apicache.middleware;
 // app.use(cache('5 minutes'));
 
-// set the request size limit to 1 MB
-app.use(bodyParser.json({ limit: '1mb' }));
+// app.use(helmet({
+//     contentSecurityPolicy: false,
+//     }) 
 
-// Use Helmet to avoid security issues
-app.use(helmet());
+// );
+// set the request size limit to 1 MB
+// app.use(bodyParser.json({ limit: '1mb' }));
+
 
 //rate limiter to avoid brute force attack
-const rateLimiter = new RateLimiterMemory({
-    points: 10, // maximum number of requests allowed
-    duration: 1, // time frame in seconds
-  });
-const rateLimiterMiddleware = (req, res, next) => {
-    rateLimiter.consume(req.ip)
-    .then(() => {
-        // request allowed, 
-        // proceed with handling the request
-        next();
-    })
-    .catch(() => {
-        // request limit exceeded, 
-        // respond with an appropriate error message
-        res.status(429).send('Too Many Requests');
-    });
-};
-app.use(rateLimiterMiddleware);
+// const rateLimiter = new RateLimiterMemory({
+//     points: 10, // maximum number of requests allowed
+//     duration: 1, // time frame in seconds
+//   });
+// const rateLimiterMiddleware = (req, res, next) => {
+//     rateLimiter.consume(req.ip)
+//     .then(() => {
+//         // request allowed, 
+//         // proceed with handling the request
+//         next();
+//     })
+//     .catch(() => {
+//         // request limit exceeded, 
+//         // respond with an appropriate error message
+//         res.status(429).send('Too Many Requests');
+//     });
+// };
+// app.use(rateLimiterMiddleware);
 
 //indiquer a express qu'on peut insérer des donnée au format json
 app.use(express.json())
@@ -115,7 +122,7 @@ import path from 'path'
 const __filename = fileURLToPath(import.meta.url);
 export const __dirname = dirname(__filename);
 const publishDirectoryPath = path.join(__dirname, './public')
-
+console.log(publishDirectoryPath)
 //set public directory
 app.use(express.static(publishDirectoryPath))
 
@@ -156,13 +163,10 @@ app.use((req, res, next) => {
         "<style>body{background: url(https://httpstatusdogs.com/img/404.jpg) no-repeat center center fixed #000000;}</style>")
 })
 
+// Utilisation de helmet pour configurer CSP
+
 //demarrage du serveur
 app.listen(port, () => {
     console.log(`Exemple de connection sur http://localhost:${port}`)
 })
 
-// Utilisation de helmet pour configurer CSP
-app.use(helmet({
-    contentSecurityPolicy : false,
-    }) 
-);
