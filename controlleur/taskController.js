@@ -1,8 +1,7 @@
 // importe le modèle de données(models) "Task" depuis un fichier appelé "task.js". 
 import { Task } from '../models/task.js';
 // import { escape } from 'escape-html';
-import pkg from 'escape-html';
-const { escape } = pkg;
+import escape from 'escape-html';
 
 //Cette fonction gère la lecture (READ) de toutes les tâches (tasks). Elle prend en charge la pagination, le filtrage et le tri des tâches en fonction des paramètres de requête.
 export const getAlltask = async (req, res) => {    
@@ -120,8 +119,8 @@ export const postTaskById = async (req, res) => {
     try {
         //on récupére l'id de la tache dans l'url
         const id = req.params.id
-        const description = req.body.description
-        const completed = req.body.completed
+        const description = escape(req.body.description)
+        const completed = req.body.completed 
         
         //postTaskById avec l'orm
         const task = await Task.create({
@@ -131,7 +130,7 @@ export const postTaskById = async (req, res) => {
         });
 
         if(!task) {
-            res.status(404).send('cannot create task')
+            res.status(404).send('impossible de créer une tache')
         }
 
         res.status(201).send(task);
