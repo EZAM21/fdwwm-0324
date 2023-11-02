@@ -17,9 +17,9 @@ dotenv.config()
 import { Sequelize } from 'sequelize';
 
 export const sequelize  = new Sequelize(
+    process.env.database,
     process.env.user,
     process.env.password,
-    process.env.database,
     {
       define: {
         freezeTableName: true
