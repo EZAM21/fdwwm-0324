@@ -140,7 +140,7 @@
  * @apiSuccessExample Success-Response:
     {
         "id": 37,
-        "description": "coool",
+        "description": "cool",
         "completed": false,
         "owner": "17",
         "updatedAt": "2023-10-23T11:45:41.948Z",
